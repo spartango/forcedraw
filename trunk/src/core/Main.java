@@ -34,7 +34,7 @@ public class Main {
 		nodes = new Vector<Node>();
 		running = false;
 		t =0;
-		randInit(10, 0, 0);
+		randInit(25, 0, 0);
 		//init();
 		home = new JFrame("Tree");
 		TreeComponent tree = new TreeComponent();
@@ -153,7 +153,7 @@ public class Main {
 	
 	public static void applyCollisionForces(){
 		for(int i=0; i<nodes.size(); i++){
-			for(int j=0; j<nodes.size(); j++){
+			for(int j=i; j<nodes.size(); j++){
 				if(i!=j && Node.distanceBetween(nodes.get(i), nodes.get(j)) <= Node.SIZE){
 					Node n1 = nodes.get(i);
 					Node n2 = nodes.get(j);
@@ -201,8 +201,8 @@ public class Main {
 					double Fx1 = m1*(Vx1p - Vx1)/dt;
 					double Fy1 = m1*(Vy1p - Vy1)/dt;
 					
-					n2.applyForce(Fx2/2, Fy2/2);
-					n1.applyForce(-Fx2/2, -Fy2/2);
+					n2.applyForce(Fx2, Fy2);
+					n1.applyForce(Fx1, Fy1);
 //					n2.setVelocityX(Vx2p);
 //					n2.setVelocityY(Vy2p);
 //					n1.setVelocityX(Vx1p);
